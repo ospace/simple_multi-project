@@ -1,0 +1,20 @@
+logging:
+  level:
+    root: INFO
+  file: log/application.log
+spring:
+  profiles:
+    active: dev
+#  session:
+#    store-type: redis
+#  redis:
+#    host: 127.0.0.1
+#    password: "pwd"
+#    port: 6379
+server:
+  port: 8000
+  compression:
+    enabled: true
+    mime-types:
+    - application/json,application/xml,text/html,text/xml,text/plain
+      
