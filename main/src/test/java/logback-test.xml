@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- 변수 지정 -->
+    <property name="LOG_DIR" value="./log_test" />
+    <property name="LOG_PATH_NAME" value="${LOG_DIR}/data.log" />
+
+	  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+	    <layout class="ch.qos.logback.classic.PatternLayout">
+	        <!-- <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}:%method - %msg%n</pattern> -->
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{64} - %msg%n</pattern>
+	    </layout>
+	  </appender>
+  
+  	<!-- FILE Appender -->
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH_NAME}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+	      <fileNamePattern>${LOG_PATH_NAME}.log.%i</fileNamePattern>
+	      <minIndex>1</minIndex>
+	      <maxIndex>3</maxIndex>
+	    </rollingPolicy>
+	
+	    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+	      <maxFileSize>5MB</maxFileSize>
+	    </triggeringPolicy>
+		
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{64} - %msg%n</pattern>
+		</encoder>
+	</appender>
+  
+  <!-- <logger name="kr.co.polarium.lccgw.service.BookingService" additivity="false">
+    <level value="trace"/>
+    <appender-ref ref="console"/>
+  </logger>
+  -->
+  
+  <root level="INFO">
+      <appender-ref ref="console"/>
+      <appender-ref ref="file"/>
+  </root>
+
+</configuration>
