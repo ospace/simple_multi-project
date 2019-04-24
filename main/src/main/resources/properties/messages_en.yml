@@ -1,0 +1,133 @@
+#validation Message(en)
+validation.AssertFalse = must be false
+validation.AssertTrue  = must be true
+validation.DecimalMax  = must be less than ${inclusive == true ? 'or equal to ' : ''}{value}
+validation.DecimalMin  = must be greater than ${inclusive == true ? 'or equal to ' : ''}{value}
+validation.Digits      = numeric value out of bounds (<{integer} digits>.<{fraction} digits> expected)
+validation.Future      = must be in the future
+validation.Max         = must be less than or equal to {value}
+validation.Min         = must be greater than or equal to {value}
+validation.NotNull     = may not be null
+validation.Null        = must be null
+validation.Past        = must be in the past
+validation.Pattern     = must match "{regexp}"
+validation.Size        = size must be between {min} and {max}
+
+validation.CreditCardNumber        = invalid credit card number
+validation.EAN                     = invalid {type} barcode
+validation.Email                   = not a well-formed email address
+validation.Length                  = length must be between {min} and {max}
+validation.LuhnCheck               = The check digit for ${validatedValue} is invalid, Luhn Modulo 10 checksum failed
+validation.Mod10Check              = The check digit for ${validatedValue} is invalid, Modulo 10 checksum failed
+validation.Mod11Check              = The check digit for ${validatedValue} is invalid, Modulo 11 checksum failed
+validation.ModCheck                = The check digit for ${validatedValue} is invalid, ${modType} checksum failed
+validation.NotBlank                = may not be empty
+validation.NotEmpty                = may not be empty
+validation.ParametersScriptAssert  = script expression "{script}" didn't evaluate to true
+validation.Range                   = must be between {min} and {max}
+validation.SafeHtml                = may have unsafe html content
+validation.ScriptAssert            = script expression "{script}" didn't evaluate to true
+validation.URL                     = must be a valid URL
+
+validation.StringListSize          = size must be between {min} and {max}
+validation.StringListPattern       = must match "{regexp}"
+
+validation.Lcc.cm000 = Wrong value
+validation.Lcc.cm001 = Not ready1
+validation.Lcc.cm002 = Not ready2
+validation.Lcc.cm003 = Not ready3
+validation.Lcc.cm004 = Not ready4
+validation.Lcc.cm005 = Not ready5
+validation.Lcc.cm006 = journeyId must be greater than or equal to 8
+validation.Lcc.cm007 = Adult age is invalid
+validation.Lcc.cm008 = Child age is invalid 
+validation.Lcc.cm009 = Infant age is invalid
+validation.Lcc.cm010 = Passengers who are below the age of 18 years are not allowed to travel alone
+validation.Lcc.cm011 = Israel nationality is not permitted to make a booking for flights arriving to or transit via Malaysia and Indonesia\
+validation.Lcc.cm012 = Not allowed booking more than 9 passengers.
+validation.Lcc.cm013 = Not allowed changing baggage 4 hours before departure
+validation.Lcc.cm014 = ${airline} airline is not operating a airport : ${airport}
+validation.Lcc.cm015 = Supported currency is KRW
+
+
+##################################################################################################
+# Error 
+#How to make error message: error.{Error code}... = {validation message}
+
+#error Message(ko)
+#system error
+error.system = system error. contact to administrator.
+error.system.bad_rq = bad request
+error.system.timeout = reequset timeout
+error.system.auth_fail = (authorize failed) valid session key to be used
+error.system.user_lock = account locked
+error.system.invalid_param = invalid parameter
+error.system.soap = SOAP error
+error.system.closed = closed on business
+error.system.connect_fail = Lcc API conect fail
+
+error.system.promotion_io = failed to get Promotion information
+error.system.promotion_fail = response a error to get a Promotion information
+error.system.promotion_itineray = invalid itinerary
+error.system.promotion_triptype = invalid trip type
+
+error.system.currency_io = error to get a currency rate
+error.system.currency_fail = response a error for getting a currency rate
+error.system.currency_empty = no currency rate
+error.system.currency_unsupport = not support currency
+
+error.system.supplier_unsupport = not support supplier
+error.system.supplier_unknowncode = unknown supplier code(supplier[{0}] code[{1}]).
+
+error.system.cahce_mismatch = mismatch cache
+error.system.schema_invalid = invalid schema
+
+error.system.undefined = (service error)unexpeced error. contant to administrator.
+
+#search schedule error
+error.search.none_journey = no schedule for the condition
+error.search.invalid_date = invalid a dept or arrv date
+error.search.invalid_param = invalid input date({0})
+error.search.over_inft = count of infant not exceed a adult
+error.search.no_route = not supported routing
+error.search.invalid_airport = {0} airline is not supported a airport({1})
+error.search.max_passenger = not exceed max count of passenger(except infant)
+error.search.none_supplier = no suppliers to searching
+error.search.not_support_infant = not support a infant passenger
+
+error.airitinerary.empty_route = no routing for condition
+
+error.createorder = error for booking
+error.createorder.fail = booked a journey but response a error
+error.createorder.over_inft = count of infant not exceed adult
+error.createorder.balancedue = invalid balancude due
+
+
+error.searchorder = no booking or failed to get it
+error.searchorder.fail = reponse a error to get a booking
+error.searchorder.fail_edit = deny edit a booking information
+
+error.cancelorder = failed to get a booking(detail: {0})
+error.cancelorder.fail = request a cancel but failed
+error.cancelorder.fail_cancel = failed to cancel booking
+
+error.ssravailability.not_booking = no booking
+
+error.sellssr.soldout = ssr sold out
+error.sellssr.balancedue = balance duce invalid
+
+error.payment.fail = request a cancel of payment but failed it
+error.payment.balancedue = payment is over, balancedue is empty
+error.payment.no_price = no balance due
+error.payment.mismatch_price = balance due and price is mismatched
+error.payment.mismatch_currency = currency unit is mismatched
+error.payment.not_enough_funds = Not enough funds available.
+
+error.updatepassenger.inft_parent = infant must associated a parent
+error.updatepassenger.deny_edit = deny a modification booking
+
+error.updatepassenger.inft_assigned = infant is assigned a parent only
+error.updatepassenger.required = required input data
+error.updatepassenger.no_idx = passengerIdx needed
+error.updatepassenger.fail = modified a booking but failed
+

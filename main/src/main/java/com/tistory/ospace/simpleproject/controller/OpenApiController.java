@@ -2,10 +2,12 @@ package com.tistory.ospace.simpleproject.controller;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.WebDataBinder;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +25,10 @@ import com.tistory.ospace.common.DataUtils;
 import com.tistory.ospace.common.SessionUtils;
 import com.tistory.ospace.simpleproject.controller.validator.RequestValidator;
 import com.tistory.ospace.simpleproject.datacontract.Response;
+import com.tistory.ospace.simpleproject.service.MonitoringService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(value = "OpenApiController", description = "Open API")
 @CrossOrigin(origins = "*", exposedHeaders="sessionid")
@@ -41,8 +46,8 @@ public class OpenApiController {
 	//@Autowired
 	//private DataContractFactory dataContractFactory;
 	
-//	@Autowired
-//	private MonitoringService monitoringService;
+	@Autowired
+	private MonitoringService monitoringService;
 	
 	@PostConstruct
 	private void init() {
@@ -145,11 +150,11 @@ public class OpenApiController {
 //		return ok(null);
 //	}
 //	
-//	@ApiOperation(value="서버정보", notes="서버 정보 조회 API")
-//	@RequestMapping(value = "/info", method = { RequestMethod.GET }, produces = {"application/json"})
-//	public Response<BuildProperties> info(HttpSession session) {
-//		return Response.ok(null, monitoringService.getBuildInfo());
-//	}
+	@ApiOperation(value="서버정보", notes="서버 정보 조회 API")
+	@RequestMapping(value = "/info", method = { RequestMethod.GET }, produces = {"application/json"})
+	public Response<BuildProperties> info(HttpSession session) {
+		return Response.ok(null, monitoringService.getBuildInfo());
+	}
 	
 //	private final String AUTH_REMOATEADDRS = "|0:0:0:0:0:0:0:1|127.0.0.1|0.0.0.1|211.202.25.242|1.214.218.218|";
 //	private boolean isAuthRemoateAddr(String strRemoteAddr) {
