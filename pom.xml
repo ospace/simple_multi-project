@@ -23,6 +23,7 @@
 	<properties>
     	<!-- <start-class>com.tistory.ospace.simpleproject.application.SimpleApplication</start-class> -->
 	    <revision>0.1.0-SNAPSHOT</revision>
+	    <revision.data>0.0.1</revision.data>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -47,7 +48,7 @@
 	</properties>
 
 	<modules>
-		<module>main</module>
+		<module>application</module>
 		<module>datacontract</module>
 	</modules>
 </project>
