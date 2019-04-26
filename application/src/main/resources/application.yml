@@ -1,7 +1,7 @@
 logging:
   level:
     root: INFO
-  file: log/application.log
+  //file: log/application.log
 spring:
   profiles:
     active: dev
@@ -11,6 +11,10 @@ spring:
 #    host: 127.0.0.1
 #    password: "pwd"
 #    port: 6379
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
 server:
   port: 8000
   compression:

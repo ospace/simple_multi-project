@@ -1,0 +1,101 @@
+#app {
+  margin: 30px;
+  min-width:1180px;        /* Suppose you want minimum width of 1000px */
+  width: auto !important;  /* Firefox will set width as auto */
+  width:1180px;            /* As IE6 ignores !important it will set width as 1000px; */
+}
+
+:root {
+  --body-bg-color: #f9fbff;
+}
+
+body {
+  /* background-color:#f7f7f7; */
+  background-color: var(--body-bg-color);
+}
+
+.text-smaller {
+  font-size: 12px;
+  color: #909296;
+}
+
+.text-normal {
+  font-size: 14px;
+}
+
+.text-bigger {
+  font-size: 16px;
+}
+
+.lcc-tag {
+  margin-bottom: 10px;
+}
+
+.lcc-p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.el-table__empty-block {
+    height: 200px;
+}
+
+.el-table th {
+  text-align: center;
+}
+
+.el-table tr {
+  text-align: right;
+}
+
+.column-left {
+  text-align: left;
+}
+
+.column-center {
+  text-align: center;
+}
+
+.column-right {
+  text-align: right;
+}
+
+/* lcc-exp-table */
+.lcc-exp-table {
+  width: auto;
+}
+.lcc-exp-table th {
+  /* color: black; */
+  font-size: 14px;
+}
+.lcc-exp-table td {
+  font-size: 14px;
+}
+
+.lcc-card {
+  background: #fafafa;
+  box-shadow: none;
+}
+
+.lcc-steps {
+  height: auto;
+}
+.el-steps.lcc-steps .el-step.is-vertical {
+  flex-basis: auto !important;
+}
+
+.lcc-collapse {
+  border: none;
+}
+.el-collapse.lcc-collapse .el-collapse-item__header {
+  font-size: 16px;
+  border: none;
+}
+.el-collapse.lcc-collapse .el-collapse-item__wrap {
+  border: none;
+}
+.el-collapse.lcc-collapse .el-collapse-item__arrow {
+  margin: unset;
+}
+
+[v-cloak] { display: none; }

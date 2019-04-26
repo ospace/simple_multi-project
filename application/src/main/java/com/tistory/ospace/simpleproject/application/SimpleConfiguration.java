@@ -37,11 +37,11 @@ public class SimpleConfiguration {
 	@Value("${spring.profiles.active:dev}")
 	private String profile;
 	
-	@Value("${spring.application.name:lccgw}")
+	@Value("${spring.application.name:ospace}")
 	private String name;
 	
-	private String activePropertiesFile = "properties/LccGWConfig-%s.properties";
-	private String defaultFile = "properties/DefaultConfig.properties";
+	private String activePropertiesFile = "properties/application-%s.properties";
+	private String defaultFile = "properties/default.properties";
 	
 	Properties defaultProp = new Properties();
 	Properties gwProp = new Properties();
@@ -55,11 +55,9 @@ public class SimpleConfiguration {
 	
 	@PostConstruct
 	private void init() {
-		LOGGER.info("=====================================================================================");
-		LOGGER.info("	active profile : {}", profile);
-		LOGGER.info("-------------------------------------------------------------------------------------");
+		LOGGER.info("===== active profile : {} =====", profile);
 		
-		InputStream inStream = null;
+	/*	InputStream inStream = null;
 		try {
 			String propertiesFile = String.format(activePropertiesFile, profile);
 		
@@ -88,7 +86,7 @@ public class SimpleConfiguration {
 					inStream.close();
 				} catch (IOException e) {}
 			}
-		}
+		}*/
 		
 		SimpleConfiguration.instance = this;
 	}

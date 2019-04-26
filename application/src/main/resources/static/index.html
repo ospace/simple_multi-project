@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<head>
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/comm.css">
+</head>
+</head>
+<body>
+  <h1>Wellcome</h1>
+  <div v-cloak id="app">
+    <el-button type="primary" icon="el-icon-share" @click="hello">Hello</el-button>
+  </div>
+  <script type="text/javascript" src="/lib/vue@2.5.13.js"></script>
+  <script type="text/javascript" src="/lib/element-ui.js"></script>
+  <script type="text/javascript" src="/lib/umd/locale/en.js"></script>
+  <script type="text/javascript" src="/lib/httpVueLoader.js"></script>
+  <script type="text/javascript" src="/js/cmm_util.js"></script>
+  <script type="text/javascript">
+    var vue = new Vue({
+       el: '#app',
+       data: {
+    	   
+       },
+       created: function() {
+    	 console.log('>>', 'app created');  
+       },
+       methods: {
+    	   hello : function() {
+    		   this.$message('Hello World');
+    	   }
+       }
+    });
+  </script>
+</body>
+</html>

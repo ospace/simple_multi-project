@@ -1,35 +1,19 @@
 package com.tistory.ospace.simpleproject.application;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.xml.bind.Marshaller;
 
 import org.apache.commons.lang.LocaleUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -44,8 +28,7 @@ import com.tistory.ospace.simpleproject.application.customMapper.JsonDateSeriali
 import com.tistory.ospace.simpleproject.service.SessionService;
 
 @Configuration
-@EnableWebMvc
-@ComponentScan(basePackages = { "kr.co.polarium.lccgw" }, includeFilters = { @Filter(Controller.class), @Filter(ControllerAdvice.class) })
+//@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 
 	@Autowired
@@ -54,8 +37,8 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	private SessionService sessionService;
 	
-	@Value("${LCC-GW.locale}")
-	private String locale;
+	//@Value("${LCC-GW.locale}")
+	private String locale = "en";
 
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
@@ -72,7 +55,6 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 	    converters.add(mappingJacksonHttpMessageConverter());
-	    converters.add(marshallingHttpMessageConverter());
 	}
 
 	@Override
@@ -101,33 +83,13 @@ public class WebConfig implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public MarshallingHttpMessageConverter marshallingHttpMessageConverter() {
-		MarshallingHttpMessageConverter converter = new MarshallingHttpMessageConverter();
-		converter.setMarshaller(jaxb2Marshaller());
-		converter.setUnmarshaller(jaxb2Marshaller());
-		return converter;
-	}
-
-	@Bean
-	public Jaxb2Marshaller jaxb2Marshaller() {
-		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setPackagesToScan(new String[] { "com.navitaire.model.booking", "org.springframework.hateoas" });
-
-		Map<String, Object> marshallerProperties = new HashMap<String, Object>();
-		marshallerProperties.put(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.valueOf(env.getProperty("xml.pretty.print")));
-		marshaller.setMarshallerProperties(marshallerProperties);
-		return marshaller;
-	}
-
-	@Bean
 	public RequestContextListener requestContextListener(){
 	    return new RequestContextListener();
 	}
 	
 	@Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("**").addResourceLocations("classpath:/swagger-ui/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+//        registry.addResourceHandler("/doc/**").addResourceLocations("classpath:/swagger-ui/");
     }
 	
 	@Bean
@@ -138,18 +100,18 @@ public class WebConfig implements WebMvcConfigurer {
 		return cookieLocaleResolver;
 	}
 	
-	@Bean
-	public MessageSource messageSource() {
-		ReloadableResourceBundleMessageSource bean = new ReloadableResourceBundleMessageSource();
-	    bean.setBasename("classpath:properties/messages");
-	    bean.setDefaultEncoding("UTF-8");
-	    return bean;
-	}
+//	@Bean
+//	public MessageSource messageSource() {
+//		ReloadableResourceBundleMessageSource bean = new ReloadableResourceBundleMessageSource();
+//	    bean.setBasename("classpath:properties/messages");
+//	    bean.setDefaultEncoding("UTF-8");
+//	    return bean;
+//	}
 	
-	@Override
-	public Validator getValidator() {
-		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-	    bean.setValidationMessageSource(messageSource());
-	    return bean;
-	}
+//	@Override
+//	public Validator getValidator() {
+//		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+//	    bean.setValidationMessageSource(messageSource());
+//	    return bean;
+//	}
 }
