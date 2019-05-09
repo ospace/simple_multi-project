@@ -15,6 +15,8 @@
   <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <maven.compiler.source>1.8</maven.compiler.source>
 
       <maven.test.skip>true</maven.test.skip>
 
@@ -23,8 +25,7 @@
 <!-- 
       Nexus
       <deploy.nexus.uri>http://foo.org</deploy.nexus.uri>
-      <version.java>1.8</version.java>
-    -->
+-->
       <version.junit>4.12</version.junit>
       <version.slf4j>1.7.5</version.slf4j>
       <version.logback>1.1.7</version.logback>
@@ -134,7 +135,6 @@
     <dependency>
         <groupId>com.tistory.ospace</groupId>
         <artifactId>simple-project-datacontract</artifactId>
-        <version>${version.data}</version>
     </dependency>
   </dependencies>
   

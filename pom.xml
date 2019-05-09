@@ -45,6 +45,16 @@
 		<version.swagger2>2.8.0</version.swagger2>
 		<version.findbugs>3.0.2</version.findbugs>
 	</properties>
+    
+    <dependencyManagement>
+        <dependencies>
+          <dependency>
+            <groupId>com.tistory.ospace</groupId>
+            <artifactId>simple-project-datacontract</artifactId>
+            <version>${version.data}</version>
+          </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 	<modules>
 		<module>application</module>
