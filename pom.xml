@@ -6,7 +6,7 @@
 
 	<groupId>com.tistory.ospace</groupId>
 	<artifactId>simple-project</artifactId>
-	<version>${revision}</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>simple-project</name>
@@ -23,7 +23,7 @@
 	<properties>
     	<!-- <start-class>com.tistory.ospace.simpleproject.application.SimpleApplication</start-class> -->
 	    <revision>0.1.0-SNAPSHOT</revision>
-	    <revision.data>0.0.1</revision.data>
+	    
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -36,8 +36,7 @@
         <!-- 
         <deploy.nexus.uri>http://foo.org</deploy.nexus.uri>
         -->
-
-        <version.parent>0.1.0-SNAPSHOT</version.parent>
+        <version.data>0.0.1</version.data>
         <version.java>1.8</version.java>
 		<version.junit>4.12</version.junit>
 		<version.slf4j>1.7.5</version.slf4j>
