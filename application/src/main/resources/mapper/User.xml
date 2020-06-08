@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tistory.ospace.simpleproject.repository.UserRepository">
+    <sql id="selectQuery">
+        SELECT
+            `id`,
+            `login_id`,
+            `username`,
+            `password`,
+            `use_yn`,
+            `create_date`,
+            `modify_date`,
+            `creator`,
+            `modifier`
+        FROM `tb_user`
+    </sql>
+    
+	<select id="countBy" resultType="java.lang.Integer">
+	   SELECT COUNT(*)
+	   FROM `tb_user`
+	   <where>
+            <if test="null != search and search.keyword != null and search.keyword != ''">
+                AND `login_id` LIKE CONCAT('%',#{search.keyword},'%')
+            </if>
+        </where>
+	</select>
+	
+	<select id="findAllBy" resultType="User">
+        <include refid="selectQuery" />
+        <where>
+            <if test="null != search and search.keyword != null and search.keyword != ''">
+                AND `login_id` LIKE CONCAT('%',#{search.keyword},'%')
+            </if>
+        </where>
+        <if test="null != search and search.offset != null">
+            LIMIT #{search.limit} OFFSET #{search.offset}
+        </if>
+    </select>
+    
+	<select id="findById" resultType="User">
+		<include refid="selectQuery" />
+		WHERE `id` = #{id}
+	</select>
+	
+	<select id="findByLoginId" resultType="User">
+        <include refid="selectQuery" />
+        WHERE `login_id` = #{loginId}
+    </select>
+    
+	<select id="findAllIn" resultType="User">
+        <include refid="selectQuery" />
+        WHERE `id` IN
+        <foreach collection="ids" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+    
+	<insert id="insert">
+		INSERT INTO `tb_user` (
+            `login_id`,
+            `username`,
+			`password`,
+			`use_yn`,
+			`create_date`,
+			`modify_date`,
+			`creator`,
+			`modifier`
+		) VALUES (
+			#{loginId},
+            #{username},
+			#{password},
+			#{useYn},
+			SYSDATE(),
+			SYSDATE(),
+			#{creator},
+			#{creator}
+		)
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+	</insert>
+
+    <update id="update">
+	    UPDATE `tb_user`
+		SET
+			<if test="loginId != null and loginId != ''">
+			    `login_id` = #{loginId},
+			</if>
+            <if test="username != null and username != ''">
+               `username` = #{username},
+            </if>
+			<if test="password != null and password != ''">
+			   `password` = #{password},
+			</if>
+			<if test="useYn != null">
+			    `use_yn` = #{useYn},
+			</if>
+			`modify_date` = SYSDATE(),
+			`modifier` = #{modifier}
+		WHERE `id` = ${id};
+    </update>
+    
+    <delete id="deletetById">
+        DELETE FROM `tb_user` WHERE `id` = #{id}
+    </delete>
+</mapper>  

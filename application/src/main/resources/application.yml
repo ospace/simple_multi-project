@@ -1,7 +1,13 @@
 logging:
   level:
     root: INFO
-  //file: log/application.log
+    log4jdbc.log4j2: WARN
+    com.tistory.ospace.simpleproject: DEBUG
+    org.springframework.web.servlet: DEBUG
+    #freemarker.ext.servlet: DEBUG
+    #org.apache.jasper.servlet.TldScanner: TRACE
+    #file: log/application.log
+    
 spring:
   profiles:
     active: dev
@@ -10,15 +16,73 @@ spring:
 #  redis:
 #    host: 127.0.0.1
 #    password: "pwd"
-#    port: 6379
-  mvc:
-    view:
-      prefix: /
-      suffix: .html
+#    port: 6379 
+  datasource:
+    #url: jdbc:h2:./data_h2;DB_CLOSE_DELAY=-1;
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enable: true
+      path: /h2
+#  mvc:
+#    view:
+#      prefix: /
+#      suffix: .html
+  #mvc.static-path-pattern: /static/**
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
+  messages:
+    basename: messages/message
+    encoding: UTF-8      
+    #cache-duration: 600 #in secs
+  devtools.livereload.enabled: true
+  resources.cache.period: 1h
+  flyway:
+    locations: classpath:db/common,classpath:db/h2
+    #baseline-on-migrate: true
+    #baseline-version: 1.5
+    #group: true
+  freemarker:
+    template-loader-path: classpath:/templates
+    suffix: .ftl
+    enabled: true
+    charset: UTF-8
+    expose-spring-macro-helpers: true
+  # 간혹 response에서 contentType이 설정에 의핸 변경되지 않은 문제점이 있음.
+  # 기본 charset이 ISO-8859-1으로 되어 있어서 그대로 반환되는 문제점으로 강제적으로 UTF-8로 적용하도록 변경
+  http:
+    encoding:
+      charset: UTF-8
+      # Enable http encoding support.
+      enabled: true
+      # Force the encoding to the configured charset on HTTP requests and responses.
+      force: true
+     
 server:
   port: 8000
   compression:
     enabled: true
     mime-types:
     - application/json,application/xml,text/html,text/xml,text/plain
-      
+  error:
+    # 오류 응답에 exception 포함 여부
+    include-exception: true
+    # 오류 응답에 stacktrace 포함여부
+    include-stacktrace: always
+    # 서버 오류 응답처리할 handler 경로
+    #path: /error
+    # 오류발생시 에러 페이지 표시 여부
+    whitelabel.enabled: true
+ 
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration.map-underscore-to-camel-case: true
+  type-aliases-package: com.tistory.ospace.simpleproject.repository.dto
+  
+file:
+  store-path: /data  

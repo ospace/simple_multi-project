@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+  
+<tiles-definitions>
+    <!-- title -->
+    <definition name=".adminTitle">
+        <put-attribute name="title" value="SimpleProject"/>
+    </definition>
+    
+    <!-- none -->
+    <definition name="none:**" extends=".adminTitle" template="/layouts/layout_none.ftl" templateType="freemarker">
+        <put-attribute name="header" value=""/>
+        <put-attribute name="nav" value=""/>
+        <put-attribute name="section" value="/{1}.ftl" type="freemarker"/>
+        <put-attribute name="footer" value=""/>
+    </definition>
+    
+    <!-- normal -->
+    <definition name="normal:**" extends=".adminTitle" template="/layouts/layout_normal.ftl" templateType="freemarker">
+        <put-attribute name="header" value="/layouts/header.ftl" type="freemarker"/>
+        <put-attribute name="nav" value="/layouts/nav.ftl" type="freemarker"/>
+        <put-attribute name="section" value="/{1}.ftl" type="freemarker"/>
+        <put-attribute name="footer" value="/layouts/footer.ftl" type="freemarker"/>
+    </definition>
+</tiles-definitions>

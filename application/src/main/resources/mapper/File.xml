@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tistory.ospace.simpleproject.repository.FileRepository">
+    <sql id="selectQuery">
+        SELECT
+            `id`,
+            `original_filename`,
+            `filename`,
+            `extension`,
+            `type`,
+            `size`,
+            `create_date`,
+            `creator`
+        FROM `tc_file`
+    </sql>
+
+    <select id="countBy" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `tc_file`
+        <where>
+            <if test="null != search and null != search.keyword and '' != search.keyword">
+                AND `filename` LIKE CONCAT('%',#{search.keyword},'%')
+            </if>
+        </where>
+    </select>
+    
+    <select id="findAllBy" resultType="File">
+	    <include refid="selectQuery" />
+		<where>
+            <if test="null != search and null != search.keyword and '' != search.keyword">
+                AND `original_filename` LIKE CONCAT('%',#{search.keyword},'%')
+            </if>
+        </where>
+        ORDER BY `create_date` DESC
+        <if test="null != search and null != search.offset">
+            LIMIT #{search.limit} OFFSET #{search.offset}
+        </if>
+    </select>
+    
+    <select id="findById" resultType="File">
+        <include refid="selectQuery" />
+        WHERE id=#{id}
+    </select>
+    
+    <select id="findBy" resultType="File">
+        <include refid="selectQuery" />
+        <where>
+            <if test="null != id and '' != id">
+                AND `id` = #{id}
+            </if>
+            <if test="null != originalFilename and '' != originalFilename">
+                AND `original_filename` = #{originalFilename}
+            </if>
+            <if test="null != extension and '' != extension">
+                AND `extension` = #{extension}
+            </if>
+            <if test="null != type and '' != type">
+                AND `type` = #{type}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+    
+    <select id="findAllIn" resultType="File">
+        <include refid="selectQuery" />
+        WHERE id IN
+        <foreach collection="ids" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+    
+	<insert id="insert">
+		INSERT INTO `tc_file` (
+			`id`,
+			`original_filename`,
+			`filename`,
+			`extension`,
+			`type`,
+			`size`,
+			`create_date`,
+			`creator`
+		) VALUES (
+			#{id},
+			#{originalFilename},
+			#{filename},
+			#{extension},
+			#{type},
+			#{size},
+			SYSDATE(),
+			#{creator}
+		)
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+	</insert> 
+	
+	<delete id="deleteById">
+	DELETE FROM `tc_file` WHERE `id` = #{id}
+	</delete>
+	
+</mapper>  

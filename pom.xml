@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.tistory.ospace</groupId>
 	<artifactId>simple-project</artifactId>
-	<version>1.0.0</version>
+	<version>${revision}</version>
 	<packaging>pom</packaging>
 
 	<name>simple-project</name>
@@ -16,13 +16,15 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.3.RELEASE</version>
+		<version>2.1.8.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
+        <revision>0.3.0-SNAPSHOT</revision>
+    
     	<!-- <start-class>com.tistory.ospace.simpleproject.application.SimpleApplication</start-class> -->
-	    <revision>0.1.0-SNAPSHOT</revision>
+	    <!-- <revision>0.1.0-SNAPSHOT</revision> -->
 	    
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -36,7 +38,7 @@
         <!-- 
         <deploy.nexus.uri>http://foo.org</deploy.nexus.uri>
         -->
-        <version.data>0.0.1</version.data>
+        <version.model>1.0.0</version.model>
         <version.java>1.8</version.java>
 		<version.junit>4.12</version.junit>
 		<version.slf4j>1.7.5</version.slf4j>
@@ -50,14 +52,20 @@
         <dependencies>
           <dependency>
             <groupId>com.tistory.ospace</groupId>
-            <artifactId>simple-project-datacontract</artifactId>
-            <version>${version.data}</version>
+            <artifactId>simple-project-model</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>com.tistory.ospace</groupId>
+            <artifactId>simple-project-core</artifactId>
+            <version>${project.version}</version>
           </dependency>
         </dependencies>
     </dependencyManagement>
 
 	<modules>
 		<module>application</module>
-		<module>datacontract</module>
+        <module>core</module>
+		<module>model</module>
 	</modules>
 </project>

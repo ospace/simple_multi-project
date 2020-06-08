@@ -13,24 +13,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.tistory.ospace.simpleproject.application.SimpleApplication;
+import com.tistory.ospace.simpleproject.SimpleApplication;
 
-import common.LccMockMvc;
-import common.LccMockRes;
+import util.ApiMockMvc;
+import util.ApiMockRes;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SimpleApplication.class)
 @AutoConfigureMockMvc
-@Import({LccMockMvc.class})
+@Import({ApiMockMvc.class})
 public class TestOpenApi {
 	private static final Logger logger = LoggerFactory.getLogger(TestOpenApi.class);
 	
 	@Test
 	public void test1() {
-		LccMockMvc mvc = LccMockMvc.create();
+		ApiMockMvc mvc = ApiMockMvc.create();
 		
 		String foo = "foo";
-		LccMockRes result = mvc.performSafe("/api/foo", foo);
+		ApiMockRes result = mvc.performSafe("/api/foo", foo);
 		
 		Integer status = result.getInteger("status");
 		

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tistory.ospace.simpleproject.repository.CodeRepository">
+    <sql id="selectQuery">
+        SELECT
+            `code`,
+            `group_code`,
+            `name`,
+            `order`,
+            `create_date`,
+            `modify_date`,
+            `creator`,
+            `modifier`
+        FROM `tc_code`
+    </sql>
+    
+     <select id="countCodeBy" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM `tc_code`
+        <where>
+            <if test="null != entity and null != entity.groupCode and '' != entity.groupCode">
+                AND `group_code` = #{entity.groupCode}
+            </if>
+            <if test="null != search and null != search.keyword and '' != search.keyword">
+                AND `name` LIKE CONCAT('%',#{search.keyword},'%')
+            </if>
+        </where>
+    </select>
+    
+    <select id="findAllCodeBy" resultType="Code">
+        <include refid="selectQuery" />
+        <where>
+            <if test="null != entity and null != entity.groupCode and '' != entity.groupCode">
+                AND `group_code` = #{entity.groupCode}
+            </if>
+            <if test="null != search and null != search.keyword and '' != search.keyword">
+                AND `name` LIKE CONCAT('%',#{search.keyword},'%')
+            </if>
+        </where>
+        ORDER BY `order`
+        <if test="null != search and null != search.offset">
+            LIMIT #{search.limit} OFFSET #{search.offset}
+        </if>
+    </select>
+
+    <select id="findCodeById" resultType="Code">
+        <include refid="selectQuery" />
+        WHERE `code` = #{code}
+    </select>
+    
+    <select id="findCodeBy" resultType="Code">
+        <include refid="selectQuery" />
+        <where>
+            <if test="null != code and '' != code">
+                AND `code` = #{code}
+            </if>
+            <if test="null != groupCode and '' != groupCode">
+                AND `group_code` = #{groupCode}
+            </if>
+            <if test="null != order and '' != order">
+                AND `order` = #{order}
+            </if>
+        </where>
+    </select>
+
+    <select id="findGroupById" resultType="GroupCode">
+        SELECT
+            `code`,
+            `name`,
+            `create_date`,
+            `modify_date`,
+            `creator`,
+            `modifier`
+        FROM `tc_code_group`
+        WHERE `code` = #{code}
+    </select>
+    
+    <select id="findLastCodeByGroup" resultType="java.lang.String">
+        SELECT MAX(`code`) FROM `tc_code`
+        WHERE `group_code` = #{groupCode}
+    </select>
+    
+    <select id="findMaxOrderByGroup" resultType="java.lang.Integer">
+        SELECT MAX(`order`) FROM `tc_code`
+        WHERE `group_code` = #{groupCode}
+    </select>
+    
+    <select id="findFirstOrderBy" resultType="Code">
+        <include refid="selectQuery" />
+        WHERE `group_code` = #{code.groupCode}
+        <if test="direction">
+	        <![CDATA[ AND `order` < (SELECT `order` FROM `tc_code` WHERE `code`=#{code.code})]]>
+	        ORDER by `order` DESC
+        </if>
+        <if test="!direction">
+	        <![CDATA[AND `order` > (SELECT `order` FROM `tc_code` WHERE `code`=#{code.code})]]>
+	        ORDER by `order`
+        </if>
+        LIMIT 1
+    </select>
+    
+    <insert id="insertCode">
+        INSERT INTO `tc_code` (
+            `code`,
+            `group_code`,
+            `name`,
+            `order`,
+            `create_date`,
+            `modify_date`,
+            `creator`,
+            `modifier`
+        ) VALUES (
+            #{code},
+            #{groupCode},
+            #{name},
+            #{order},
+            SYSDATE(),
+            SYSDATE(),
+            #{creator},
+            #{creator}
+        )
+    </insert>
+    
+    <insert id="insertGroup">
+        INSERT INTO `tc_code_group` (
+            `code`,
+            `name`,
+            `create_date`,
+            `modify_date`,
+            `creator`,
+            `modifier`
+        ) VALUES (
+            #{code},
+            #{name},
+            SYSDATE(),
+            SYSDATE(),
+            #{creator},
+            #{creator}
+        )
+    </insert>
+
+    <update id="updateCode">
+        UPDATE `tc_code`
+        SET
+            <if test="null != name and '' != name">
+                `name` = #{name},
+            </if>
+            <if test="null != order">
+                `order` = #{order},
+            </if>
+            `modify_date` = SYSDATE(),
+            `modifier` = #{modifier}
+        WHERE `code` = #{code}
+    </update>
+
+    <update id="updateGroup">
+        UPDATE `tc_code_group`
+        SET
+            `name` = #{name},
+            `modify_date` = SYSDATE(),
+            `modifier` = #{modifier}
+        WHERE `code` = #{code}
+    </update>
+    
+    <update id="rearrange">
+        UPDATE `tc_code`
+        SET
+            `order` = `order` + #{value},
+            `modify_date` = SYSDATE(),
+            `modifier` = #{code.modifier}
+        WHERE
+            `group_code` = #{code.groupCode}
+            <![CDATA[ AND `order` >= #{code.order} ]]>
+    </update>
+
+    <delete id="deleteCodeBy">
+        DELETE FROM `tc_code`
+        WHERE `code` = #{code}
+        <if test="null != groupCode and '' != groupCode">
+            AND `group_code` = #{groupCode}
+        </if>
+    </delete>
+    
+    <delete id="deletetGroupBy">
+        DELETE FROM `tc_code_group`
+        WHERE `code` = #{code}
+    </delete>
+    
+    
+</mapper>  

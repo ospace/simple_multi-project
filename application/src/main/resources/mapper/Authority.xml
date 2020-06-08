@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tistory.ospace.simpleproject.repository.AuthorityRepository">
+    <sql id="selectQuery">
+        SELECT
+            `user_id`,
+            `authority`
+        FROM `tb_authority`
+    </sql>
+    
+	<select id="countBy" resultType="java.lang.Integer">
+	   SELECT COUNT(*)
+	   FROM `tb_authority`
+	</select>
+	
+	<select id="findAllBy" resultType="Authority">
+        <include refid="selectQuery" />
+        <where>
+            <if test="null != entity and null != entity.userId">
+                AND `user_id` = #{userId}
+            </if>
+        </where>
+        <if test="null != search and search.offset != null">
+            LIMIT #{search.limit} OFFSET #{search.offset}
+        </if>
+    </select>
+    
+<!-- 	<select id="findById" resultType="Authority">
+		<include refid="selectQuery" />
+		WHERE `id` = #{id}
+	</select> -->
+	
+<!-- 	<select id="findByLoginId" resultType="Authority">
+        <include refid="selectQuery" />
+        WHERE `login_id` = #{loginId}
+    </select> -->
+    
+	<select id="findAllIn" resultType="Authority">
+        <include refid="selectQuery" />
+        WHERE `user_id` IN
+        <foreach collection="ids" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+    
+	<insert id="insert">
+		INSERT INTO `tb_authority` (
+			`user_id`,
+			`authority`
+		) VALUES (
+			#{userId},
+            #{authority}
+		)
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+	</insert>
+
+    <!-- <update id="update">
+	    UPDATE `tb_user`
+		SET
+			<if test="loginId != null and loginId != ''">
+			    `login_id` = #{loginId},
+			</if>
+            <if test="username != null and username != ''">
+               `username` = #{username},
+            </if>
+			<if test="password != null and password != ''">
+			   `password` = #{password},
+			</if>
+			<if test="useYn != null">
+			    `use_yn` = #{useYn},
+			</if>
+			`modify_date` = SYSDATE(),
+			`modifier` = #{modifier}
+		WHERE `id` = ${id};
+    </update> -->
+    
+    <delete id="deletetById">
+        DELETE FROM `tb_authority` WHERE `user_id` = #{userId}
+    </delete>
+</mapper>  

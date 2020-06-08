@@ -1,0 +1,7 @@
+[v-cloak]:before {
+    content: ''
+}
+
+[v-cloak] > * {
+    display: none;
+}

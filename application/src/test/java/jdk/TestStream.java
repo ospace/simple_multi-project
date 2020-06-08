@@ -10,8 +10,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tistory.ospace.common.CmmUtils;
-import com.tistory.ospace.common.Pair;
+import com.tistory.ospace.core.data.Pair;
+import com.tistory.ospace.core.util.CmmUtils;
 
 class Foo {
 	private int idx;

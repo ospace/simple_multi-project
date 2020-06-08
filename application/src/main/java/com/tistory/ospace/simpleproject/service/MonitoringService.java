@@ -6,14 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.stereotype.Component;
 
-import com.tistory.ospace.common.Pair;
+import com.tistory.ospace.core.data.Pair;
 
 @Component
 public class MonitoringService {
-	//@Autowired
-	//private LccGWConfiguration configuration;
-	
-	
 	@Autowired
 	private BuildProperties buildProperties;
 	

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
-import com.tistory.ospace.common.DataUtils;
-import com.tistory.ospace.simpleproject.datacontract.Request;
+import com.tistory.ospace.core.util.DataUtils;
+import com.tistory.ospace.simpleproject.model.Request;
 
 @Component
 public class RequestValidator extends SimpleSmartValidator {

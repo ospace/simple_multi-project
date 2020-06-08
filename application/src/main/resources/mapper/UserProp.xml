@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tistory.ospace.simpleproject.repository.UserPropRepository">
+    <sql id="selectQueryShort">
+        SELECT
+            `id`,
+            `birthday`,
+            `email`,
+            `gender`
+        FROM `tb_user_prop`
+    </sql>
+    <sql id="selectQuery">
+        SELECT
+            `id`,
+            `birthday`,
+            `email`,
+            `gender`,
+            `create_date`,
+            `modify_date`,
+            `creator`,
+            `modifier`
+        FROM `tb_user_prop`
+    </sql>
+    
+	<select id="countBy" resultType="java.lang.Integer">
+	   SELECT COUNT(*)
+	   FROM `tb_user_prop`
+	   <where>
+            <if test="null != search and search.keyword != null and search.keyword != ''">
+                AND (
+                    `name` LIKE CONCAT('%',#{search.keyword},'%')
+                    OR `login_id` LIKE CONCAT('%',#{search.keyword},'%')
+                )
+            </if>
+        </where>
+	</select>
+	
+	<select id="findAllBy" resultType="UserProp">
+        <include refid="selectQueryShort" />
+        <where>
+            <if test="null != search and search.keyword != null and search.keyword != ''">
+                AND (
+                    `name` LIKE CONCAT('%',#{search.keyword},'%')
+                    OR `login_id` LIKE CONCAT('%',#{search.keyword},'%')
+                )
+            </if>
+        </where>
+        ORDER BY create_date DESC
+        <if test="null != search and search.offset != null">
+            LIMIT #{search.limit} OFFSET #{search.offset}
+        </if>
+    </select>
+    
+    <select id="findAllIn" resultType="UserProp">
+        <include refid="selectQuery" />
+        WHERE `id` IN
+        <foreach collection="ids" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+    
+	<select id="findById" resultType="UserProp">
+		<include refid="selectQuery" />
+		WHERE `id` = #{id}
+	</select>
+	
+	<select id="findByLoginId" resultType="UserProp">
+        <include refid="selectQuery" />
+        WHERE `login_id` = #{loginId}
+    </select>
+    
+	<insert id="insert">
+		INSERT INTO `tb_user_prop` (
+			`birthday`,
+			`email`,
+			`gender`,
+			`use_yn`,
+			`create_date`,
+			`creator`,
+			`modify_date`,
+			`modifier`
+		) VALUES (
+			#{birthday},
+			#{email},
+			#{gender},
+			'Y',
+			SYSDATE(),
+			#{creator},
+			SYSDATE(),
+			#{creator}
+		)
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+	</insert>
+
+    <update id="update">
+	    UPDATE `tb_user_prop`
+		SET
+			<if test="loginId != null and loginId != ''">
+			    `login_id` = #{loginId},
+			</if>
+			<if test="password != null and password != ''">
+			   `password` = #{password},
+			</if>
+			<if test="name != null and name != ''">
+			   `name`= #{name},
+			</if>
+			<if test="birthday != null and birthday != ''">
+			   `birthday` = #{birthday},
+			</if>
+			<if test="email != null and email != ''">
+			    `email` = #{email},
+			</if>
+			<if test="gender != null">
+			    `gender` = #{gender},
+			</if>
+			<if test="useYn != null">
+                `use_yn` = #{useYn},
+            </if>
+			`modify_date` = SYSDATE(),
+			`modifier` = #{modifier}
+		WHERE `id` = ${id};
+    </update>
+    
+    <delete id="deletetById">
+        DELETE FROM `tb_user_prop` WHERE `id` = #{id}
+    </delete>
+</mapper>  
