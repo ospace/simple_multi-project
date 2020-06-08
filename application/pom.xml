@@ -68,8 +68,6 @@
       <optional>true</optional>
     </dependency>
     
-    
-    
     <!-- spring security -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -259,15 +257,6 @@
        </configuration>
     </plugin>
     -->
-    <!--
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${version.java}</source>
-          <target>${version.java}</target>
-        </configuration>
-    </plugin> -->
     <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -279,16 +268,16 @@
             <goals>
               <goal>build-info</goal>
             </goals>
-        <!--
-        <configuration> 
-           <additionalProperties>
-             <java.version>${version.java}</java.version>
-              <some.custom.property>some value</some.custom.property>
-           </additionalProperties>
-         </configuration>
-         -->
-        </execution>
-      </executions>
+	        <!--
+	        <configuration> 
+	           <additionalProperties>
+	             <java.version>${version.java}</java.version>
+	              <some.custom.property>some value</some.custom.property>
+	           </additionalProperties>
+	         </configuration>
+	         -->
+          </execution>
+        </executions>
     </plugin>
   </plugins>
   </build>

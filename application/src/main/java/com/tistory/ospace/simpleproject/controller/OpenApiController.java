@@ -3,35 +3,26 @@ package com.tistory.ospace.simpleproject.controller;
 import java.security.Principal;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tistory.ospace.core.BaseException;
 import com.tistory.ospace.core.util.CmmUtils;
-import com.tistory.ospace.core.util.StringUtils;
 import com.tistory.ospace.simpleproject.controller.validator.RequestValidator;
-import com.tistory.ospace.simpleproject.model.Response;
 import com.tistory.ospace.simpleproject.service.MonitoringService;
 import com.tistory.ospace.simpleproject.util.SessionUtils;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 

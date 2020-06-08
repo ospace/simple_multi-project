@@ -4,8 +4,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
@@ -25,17 +23,12 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 
-import com.tistory.ospace.simpleproject.controller.UserVueController;
 import com.tistory.ospace.simpleproject.service.SessionService;
 
 @Configuration
-//@EnableWebMvc
 public class SpringMvcConfig implements WebMvcConfigurer {
-    private static final Logger logger = LoggerFactory.getLogger(UserVueController.class);
+//    private static final Logger logger = LoggerFactory.getLogger(UserVueController.class);
     
-//	@Autowired
-//	private Environment env;
-	
 	@Autowired
 	private SessionService sessionService;
 	
@@ -79,43 +72,19 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         return tilesConfigurer;
     }
     
-    /*
-     * 확장자를 사용해서 content type을 설정
-     * 현재 환경에서는 content type 지정방식을 사용할 수 없음. 원인은 파악중.
-     * 원인: 확장자까지 경로로 인식하면서 찾지못하는듯 함.
-     * 이 방식은 Restfull 방식의 API만 지원하는 경우에 사용이 필요
-     * 그러마 parameter는 잘동작함.
-     */
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		configurer
 		    .useRegisteredExtensionsOnly(false)
-		    //.useRegisteredExtensionsOnly(true)
     		.favorPathExtension(true)
     		.favorParameter(true)
     		.ignoreAcceptHeader(false)
-    		//.useJaf(false)
-    		//.defaultContentType(MediaType.APPLICATION_JSON_UTF8)
     		.defaultContentType(MediaType.TEXT_HTML)
     		.mediaType("html", MediaType.TEXT_HTML)
     		.mediaType("json", MediaType.APPLICATION_JSON_UTF8)
     		.mediaType("xml", MediaType.APPLICATION_XML);
 	}
 	
-//	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-//        configurer
-//            .favorPathExtension(true)
-//            .favorParameter(false)
-//            .ignoreAcceptHeader(true)
-////                  .useRegisteredExtensionsOnly(true)
-//                  //.useRegisteredExtensionsOnly(false)
-//                  //.defaultContentType(MediaType.APPLICATION_JSON_UTF8)
-//                  //.defaultContentType(MediaType.APPLICATION_XML)
-//            .defaultContentType(MediaType.TEXT_HTML)
-//            .mediaType("json", MediaType.APPLICATION_JSON_UTF8)
-//            .mediaType("xml", MediaType.APPLICATION_XML);
-//    }
-
 	/*
 	 * Http 메시지 변환용?
 	 */
@@ -162,14 +131,6 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         configurer.setUseSuffixPatternMatch(true);
     }
         
-//	@Override
-//    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-//	    logger.info(">> addResourceHandlers: {}", staticPathPattern);
-//        registry
-//            //.addResourceHandler("/doc/**").addResourceLocations("classpath:/swagger-ui/")
-//        ;
-//    }
-	
 	@Bean
 	public LocaleResolver localeResolver() {
 	    SessionLocaleResolver slr = new SessionLocaleResolver();
