@@ -200,26 +200,28 @@
     </dependency>
   
     <!-- json and xml -->
+    <!-- 
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-core</artifactId>
     </dependency>   
-
+    -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
     </dependency>
-  <!-- 
+    <!-- 
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
     </dependency>
-    
+    --> 
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-xml</artifactId>
     </dependency>
-   -->  
+    <!--// json and xml -->
+     
     <!--  api documentation -->
     <dependency>
       <groupId>io.springfox</groupId>

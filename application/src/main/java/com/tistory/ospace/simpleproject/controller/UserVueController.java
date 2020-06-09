@@ -102,11 +102,8 @@ public class UserVueController{
     
     //@GetMapping(value="/search")
     @RequestMapping(value="/search")
-//	@RequestMapping(value="/search",
-//	        consumes= {"application/json", "application/xml"},
-//	        produces = { "application/json", "application/xml" },
-//	        method= {RequestMethod.GET}
-//	)
+    // 매핑시 사용할 contentType을 설정할 수 있음.
+	// @RequestMapping(value="/search", consumes={"application/json"}, produces={"application/json"}, method={RequestMethod.GET})
     public @ResponseBody ListRS<?> search(SearchKeyword searchKeyword) {
         logger.info("search begin: searchKeyword[{}]", CmmUtils.toString(searchKeyword));
         long runtime = System.currentTimeMillis();

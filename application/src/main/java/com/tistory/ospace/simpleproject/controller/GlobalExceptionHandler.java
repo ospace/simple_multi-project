@@ -24,7 +24,8 @@ import com.tistory.ospace.simpleproject.exception.SimpleProjectDuplicateExceptio
 import com.tistory.ospace.simpleproject.exception.SimpleProjectException;
 import com.tistory.ospace.simpleproject.util.ErrorRS;
 
-@ControllerAdvice
+// 특정 패키지에 제한된 예외 처리
+@ControllerAdvice("com.tistory.ospace.simpleproject")
 public class GlobalExceptionHandler {
 	private Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 	

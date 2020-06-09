@@ -75,11 +75,11 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		configurer
-		    .useRegisteredExtensionsOnly(false)
-    		.favorPathExtension(true)
-    		.favorParameter(true)
-    		.ignoreAcceptHeader(false)
-    		.defaultContentType(MediaType.TEXT_HTML)
+		    .useRegisteredExtensionsOnly(false)      	// 등록된 확장자만 사용 여부
+    		.favorPathExtension(true)                	//확장자로 contentType 적용 여부
+    		.favorParameter(true)          				//파라미터로 contentType 적용여부
+    		.ignoreAcceptHeader(false)  				// accept 헤더 무시 여부
+    		.defaultContentType(MediaType.TEXT_HTML) 	//기본 contentType
     		.mediaType("html", MediaType.TEXT_HTML)
     		.mediaType("json", MediaType.APPLICATION_JSON_UTF8)
     		.mediaType("xml", MediaType.APPLICATION_XML);
@@ -126,6 +126,9 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         return bean;
     }
 
+    /*
+     * 확장자 기반 contentType을 사용하는 경우 확장자 제거용 
+     */
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.setUseSuffixPatternMatch(true);
