@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tistory.ospace.base.data.SearchDto;
 import com.tistory.ospace.core.util.DataUtils;
 import com.tistory.ospace.core.util.StringUtils;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectDataIntegrityException;
@@ -23,7 +24,6 @@ import com.tistory.ospace.simpleproject.exception.SimpleProjectDuplicateExceptio
 import com.tistory.ospace.simpleproject.repository.AuthorityRepository;
 import com.tistory.ospace.simpleproject.repository.UserRepository;
 import com.tistory.ospace.simpleproject.repository.dto.AuthorityDto;
-import com.tistory.ospace.simpleproject.repository.dto.SearchDto;
 import com.tistory.ospace.simpleproject.repository.dto.UserDto;
 import com.tistory.ospace.simpleproject.util.SessionUtils;
 
@@ -82,15 +82,15 @@ public class UserService implements UserDetailsService {
 	 */
 	@Transactional
 	public void delete(UserDto account) {
-		accountRepo.deletetById(account.getId());
+		accountRepo.deleteById(account.getId());
 	}
 
 	public int count(SearchDto search) {
-		return accountRepo.countBy(search);
+		return accountRepo.countBy(search, null);
 	}
 
 	public List<UserDto> search(SearchDto search) {
-		List<UserDto> ret = accountRepo.findAllBy(search);
+		List<UserDto> ret = accountRepo.findAllBy(search, null);
 		return ret;
 	}
 	
@@ -121,7 +121,7 @@ public class UserService implements UserDetailsService {
 	public void deleteById(Integer id) {
 		if(null == id) return;
 		try {
-			accountRepo.deletetById(id);	
+			accountRepo.deleteById(id);	
 		} catch(DataIntegrityViolationException ex) {
 			throw new SimpleProjectDataIntegrityException("계정삭제: id["+id+"]", ex);
 		}

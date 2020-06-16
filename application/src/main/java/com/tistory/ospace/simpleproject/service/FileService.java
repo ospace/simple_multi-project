@@ -25,13 +25,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tistory.ospace.base.data.SearchDto;
 import com.tistory.ospace.core.util.DataUtils;
 import com.tistory.ospace.core.util.FileUtils;
 import com.tistory.ospace.core.util.StringUtils;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectDataIntegrityException;
 import com.tistory.ospace.simpleproject.repository.FileRepository;
 import com.tistory.ospace.simpleproject.repository.dto.FileDto;
-import com.tistory.ospace.simpleproject.repository.dto.SearchDto;
 import com.tistory.ospace.simpleproject.util.DateHelper;
 import com.tistory.ospace.simpleproject.util.SessionUtils;
 
@@ -47,7 +47,7 @@ public class FileService {
 	private String storePath;
 	
 	@Autowired
-	FileRepository fileRepo;
+	private FileRepository fileRepo;
 	
 	@Transactional
 	public FileDto upload(MultipartFile mf) {
@@ -88,13 +88,13 @@ public class FileService {
 	}
 	
 	public List<FileDto> search(SearchDto search) {
-		List<FileDto> ret = fileRepo.findAllBy(search);
+		List<FileDto> ret = fileRepo.findAllBy(search, null);
 		
 		return ret;
 	}
 	
 	public int count(SearchDto search) {
-		Integer res = fileRepo.countBy(search);
+		Integer res = fileRepo.countBy(search, null);
 		return null == res ? 0 : res; 
 	}
 	

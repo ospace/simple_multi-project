@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.tistory.ospace.base.data.SearchDto;
 import com.tistory.ospace.simpleproject.repository.dto.CodeDto;
 import com.tistory.ospace.simpleproject.repository.dto.GroupCodeDto;
-import com.tistory.ospace.simpleproject.repository.dto.SearchDto;
 
 @Mapper
 public interface CodeRepository {

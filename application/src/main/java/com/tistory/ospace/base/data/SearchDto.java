@@ -1,4 +1,4 @@
-package com.tistory.ospace.simpleproject.repository.dto;
+package com.tistory.ospace.base.data;
 
 import org.apache.ibatis.type.Alias;
 

@@ -6,6 +6,7 @@ import java.util.Locale.Category;
 import java.util.Map;
 import java.util.Set;
 
+import com.tistory.ospace.base.data.SearchDto;
 import com.tistory.ospace.core.data.BaseDto;
 import com.tistory.ospace.core.util.CmmUtils;
 import com.tistory.ospace.core.util.DataUtils;
@@ -15,7 +16,6 @@ import com.tistory.ospace.simpleproject.model.SearchKeyword;
 import com.tistory.ospace.simpleproject.model.User;
 import com.tistory.ospace.simpleproject.repository.dto.CodeDto;
 import com.tistory.ospace.simpleproject.repository.dto.FileDto;
-import com.tistory.ospace.simpleproject.repository.dto.SearchDto;
 import com.tistory.ospace.simpleproject.repository.dto.UserDto;
 import com.tistory.ospace.simpleproject.repository.dto.UserPropDto;
 import com.tistory.ospace.simpleproject.service.UserPropService;

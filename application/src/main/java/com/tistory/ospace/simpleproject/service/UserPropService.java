@@ -8,12 +8,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tistory.ospace.base.data.SearchDto;
 import com.tistory.ospace.core.util.DataUtils;
 import com.tistory.ospace.core.util.StringUtils;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectDataIntegrityException;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectDuplicateException;
 import com.tistory.ospace.simpleproject.repository.UserPropRepository;
-import com.tistory.ospace.simpleproject.repository.dto.SearchDto;
 import com.tistory.ospace.simpleproject.repository.dto.UserPropDto;
 import com.tistory.ospace.simpleproject.util.SessionUtils;
 
@@ -42,15 +42,15 @@ public class UserPropService{
 	 */
 	@Transactional
 	public void delete(UserPropDto user) {
-		userRepo.deletetById(user.getId());
+		userRepo.deleteById(user.getId());
 	}
 
 	public int count(SearchDto search) {
-		return userRepo.countBy(search);
+		return userRepo.countBy(search, null);
 	}
 
 	public List<UserPropDto> search(SearchDto search) {
-		List<UserPropDto> ret = userRepo.findAllBy(search);
+		List<UserPropDto> ret = userRepo.findAllBy(search, null);
 		return ret;
 	}
 	
@@ -81,7 +81,7 @@ public class UserPropService{
 	public void deleteById(Integer id) {
 		if(null == id) return;
 		try {
-			userRepo.deletetById(id);
+			userRepo.deleteById(id);
 		} catch(DataIntegrityViolationException ex) {
 			throw new SimpleProjectDataIntegrityException("사용자삭제: id["+id+"]", ex);
 		}

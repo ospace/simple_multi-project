@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.tistory.ospace.base.data.SearchDto;
 import com.tistory.ospace.core.util.CmmUtils;
 import com.tistory.ospace.core.util.DataUtils;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectException;
 import com.tistory.ospace.simpleproject.model.Account;
 import com.tistory.ospace.simpleproject.model.SearchKeyword;
 import com.tistory.ospace.simpleproject.model.User;
-import com.tistory.ospace.simpleproject.repository.dto.SearchDto;
 import com.tistory.ospace.simpleproject.repository.dto.UserDto;
 import com.tistory.ospace.simpleproject.service.CodeService;
 import com.tistory.ospace.simpleproject.service.UserService;

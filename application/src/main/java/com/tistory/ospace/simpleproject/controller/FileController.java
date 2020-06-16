@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tistory.ospace.base.data.SearchDto;
 import com.tistory.ospace.core.util.CmmUtils;
 import com.tistory.ospace.core.util.DataUtils;
 import com.tistory.ospace.simpleproject.model.FileInfo;
 import com.tistory.ospace.simpleproject.model.ListRS;
 import com.tistory.ospace.simpleproject.model.SearchKeyword;
 import com.tistory.ospace.simpleproject.repository.dto.FileDto;
-import com.tistory.ospace.simpleproject.repository.dto.SearchDto;
 import com.tistory.ospace.simpleproject.service.FileService;
 import com.tistory.ospace.simpleproject.util.ModelUtils;
 

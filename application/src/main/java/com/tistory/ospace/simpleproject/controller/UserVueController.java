@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tistory.ospace.base.data.SearchDto;
 import com.tistory.ospace.core.util.CmmUtils;
 import com.tistory.ospace.core.util.DataUtils;
 import com.tistory.ospace.simpleproject.model.ListRS;
 import com.tistory.ospace.simpleproject.model.SearchKeyword;
 import com.tistory.ospace.simpleproject.model.User;
-import com.tistory.ospace.simpleproject.repository.dto.SearchDto;
 import com.tistory.ospace.simpleproject.repository.dto.UserDto;
 import com.tistory.ospace.simpleproject.service.UserService;
 import com.tistory.ospace.simpleproject.util.ModelUtils;
