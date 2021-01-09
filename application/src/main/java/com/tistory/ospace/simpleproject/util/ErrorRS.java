@@ -3,9 +3,9 @@ package com.tistory.ospace.simpleproject.util;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.tistory.ospace.core.util.DateUtils;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.tistory.ospace.common.util.DateUtils;
 
 @JsonRootName("error")
 @JsonInclude(Include.NON_NULL)

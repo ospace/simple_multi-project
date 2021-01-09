@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tistory.ospace.base.data.SearchDto;
-import com.tistory.ospace.core.util.CmmUtils;
-import com.tistory.ospace.core.util.DataUtils;
+import com.tistory.ospace.common.util.CmmUtils;
+import com.tistory.ospace.common.util.DataUtils;
 import com.tistory.ospace.simpleproject.model.ListRS;
 import com.tistory.ospace.simpleproject.model.SearchKeyword;
 import com.tistory.ospace.simpleproject.model.User;
@@ -76,7 +76,7 @@ public class UserVueController{
 	 */
 	@RequestMapping(value="/form")
 	public String form(@ModelAttribute("search") SearchKeyword search, Integer id, Model model) {
-		logger.info("form begin: search[{}] id[{}]", CmmUtils.toString(search), id);
+		logger.info("form begin: search[{}] id[{}]", CmmUtils.toJsonString(search), id);
 		
 		//model.addAttribute("roleList", codeService.searchRole());
 		
@@ -87,7 +87,7 @@ public class UserVueController{
 		
 		model.addAttribute("user", user);
 		
-		logger.info("form end: user[{}]", CmmUtils.toString(user));
+		logger.info("form end: user[{}]", CmmUtils.toJsonString(user));
 		
 		return "normal:userVue/userForm";
 	} 
@@ -105,7 +105,7 @@ public class UserVueController{
     // 매핑시 사용할 contentType을 설정할 수 있음.
 	// @RequestMapping(value="/search", consumes={"application/json"}, produces={"application/json"}, method={RequestMethod.GET})
     public @ResponseBody ListRS<?> search(SearchKeyword searchKeyword) {
-        logger.info("search begin: searchKeyword[{}]", CmmUtils.toString(searchKeyword));
+        logger.info("search begin: searchKeyword[{}]", CmmUtils.toJsonString(searchKeyword));
         long runtime = System.currentTimeMillis();
         
         SearchDto search = ModelUtils.convert(searchKeyword, new SearchDto());
@@ -135,7 +135,7 @@ public class UserVueController{
 	public void  save(@Valid @RequestBody User user) {
         User userClone = (User)user.clone();
         userClone.setPassword("[Hidden]");
-		logger.debug("save begin: user[{}]", CmmUtils.toString(userClone));
+		logger.debug("save begin: user[{}]", CmmUtils.toJsonString(userClone));
 		
 	    userService.save(ModelUtils.convert(user, new UserDto()));
 		

@@ -26,9 +26,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tistory.ospace.base.data.SearchDto;
-import com.tistory.ospace.core.util.DataUtils;
-import com.tistory.ospace.core.util.FileUtils;
-import com.tistory.ospace.core.util.StringUtils;
+import com.tistory.ospace.common.util.DataUtils;
+import com.tistory.ospace.common.util.FileUtils;
+import com.tistory.ospace.common.util.StringUtils;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectDataIntegrityException;
 import com.tistory.ospace.simpleproject.repository.FileRepository;
 import com.tistory.ospace.simpleproject.repository.dto.FileDto;

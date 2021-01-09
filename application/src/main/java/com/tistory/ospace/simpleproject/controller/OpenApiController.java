@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.CmmUtils;
 import com.tistory.ospace.simpleproject.controller.validator.RequestValidator;
 import com.tistory.ospace.simpleproject.service.MonitoringService;
 import com.tistory.ospace.simpleproject.util.SessionUtils;
@@ -98,7 +98,7 @@ public class OpenApiController {
     //@PreAuthorize("#username == authentication.principal.username")
     //@PostAuthorize("returnObject.username == authentication.principal.nickName")
     public Principal me(final Principal principal) {
-        LOGGER.info("authentication[{}]", CmmUtils.toString(SessionUtils.getAuthentication()));
+        LOGGER.info("authentication[{}]", CmmUtils.toJsonString(SessionUtils.getAuthentication()));
         
         return principal;
     }

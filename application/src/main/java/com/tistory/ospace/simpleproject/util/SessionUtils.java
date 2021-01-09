@@ -13,7 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.CmmUtils;
 import com.tistory.ospace.simpleproject.repository.dto.UserDto;
 
 public class SessionUtils {
@@ -77,7 +77,7 @@ public class SessionUtils {
 	}
 	
 	public static void setJson(HttpSession session, String name, Object value) {
-		set(session, name, CmmUtils.toString(value));
+		set(session, name, CmmUtils.toJsonString(value));
 	}
 	
 	public static void set(HttpSession session, String name, Object value) {

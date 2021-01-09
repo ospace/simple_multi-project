@@ -10,8 +10,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tistory.ospace.core.data.Pair;
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.core.Pair;
+import com.tistory.ospace.common.util.CmmUtils;
 
 class Foo {
 	private int idx;
@@ -37,7 +37,7 @@ class Foo {
 	}
 	@Override
 	public String toString() {
-		return CmmUtils.toString(this);
+		return CmmUtils.toJsonString(this);
 	}
 }
 

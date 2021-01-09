@@ -14,8 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.tistory.ospace.base.data.SearchDto;
-import com.tistory.ospace.core.util.CmmUtils;
-import com.tistory.ospace.core.util.DataUtils;
+import com.tistory.ospace.common.util.CmmUtils;
+import com.tistory.ospace.common.util.DataUtils;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectException;
 import com.tistory.ospace.simpleproject.model.Account;
 import com.tistory.ospace.simpleproject.model.SearchKeyword;
@@ -65,7 +65,7 @@ public class UserFormController{
 		model.addAttribute("roleMap", codeService.searchRoleMap());
 		//model.addAttribute("yn", YN.toMap());
 		
-		logger.debug("userList end: runtime[{} msec] data[{}]", System.currentTimeMillis()-runtime, CmmUtils.toString(ret));
+		logger.debug("userList end: runtime[{} msec] data[{}]", System.currentTimeMillis()-runtime, CmmUtils.toJsonString(ret));
 		
 		return "normal:userForm/userList";
 	} 
@@ -79,7 +79,7 @@ public class UserFormController{
 	 */
 	@RequestMapping(value="/form")
 	public String form(@ModelAttribute("search") SearchKeyword search, Integer id, Model model) {
-		logger.info("form begin: search[{}] id[{}]", CmmUtils.toString(search), id);
+		logger.info("form begin: search[{}] id[{}]", CmmUtils.toJsonString(search), id);
 		
 		model.addAttribute("roleList", codeService.searchRole());
 		
@@ -90,7 +90,7 @@ public class UserFormController{
 		
 		model.addAttribute("user", user);
 		
-		logger.info("form end: user[{}]", CmmUtils.toString(user));
+		logger.info("form end: user[{}]", CmmUtils.toJsonString(user));
 		
 		return "normal:userForm/userForm";
 	} 

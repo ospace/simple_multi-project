@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tistory.ospace.base.data.SearchDto;
-import com.tistory.ospace.core.util.DataUtils;
-import com.tistory.ospace.core.util.StringUtils;
+import com.tistory.ospace.common.util.DataUtils;
+import com.tistory.ospace.common.util.StringUtils;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectDataIntegrityException;
 import com.tistory.ospace.simpleproject.repository.CodeRepository;
 import com.tistory.ospace.simpleproject.repository.dto.CodeDto;

@@ -2,10 +2,10 @@ package com.tistory.ospace.base.data;
 
 import org.apache.ibatis.type.Alias;
 
-import com.tistory.ospace.core.data.BaseData;
+import com.tistory.ospace.common.core.BaseObject;
 
 @Alias("Search")
-public class SearchDto extends BaseData {
+public class SearchDto extends BaseObject {
 	private Integer limit;
 	private Integer offset;
 	private String type;

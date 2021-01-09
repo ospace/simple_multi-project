@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.CmmUtils;
 
 public class ApiMockRes {
 	private static final Pattern arrayPtn = Pattern.compile("(\\S+)\\[(\\d+)\\]");
@@ -20,7 +20,7 @@ public class ApiMockRes {
 	public ApiMockRes(MvcResult result) {
 		this.result = result;
 		try {
-			this.currentNode = CmmUtils.toObject(result.getResponse().getContentAsString());
+			this.currentNode = CmmUtils.toJsonNode(result.getResponse().getContentAsString());
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("LccMockRes parse json failed", e);
 		}
@@ -58,7 +58,7 @@ public class ApiMockRes {
 	}
 	
 	public String print() {
-		return CmmUtils.toString(currentNode);
+		return CmmUtils.toJsonString(currentNode);
 	}
 	
 	private JsonNode getJsonNode(String query) {

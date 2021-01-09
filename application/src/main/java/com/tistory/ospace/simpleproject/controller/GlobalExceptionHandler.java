@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.CmmUtils;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectDataIntegrityException;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectDuplicateException;
 import com.tistory.ospace.simpleproject.exception.SimpleProjectException;
@@ -97,7 +97,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ErrorRS handleMethodArgumentNotValidException(HttpServletRequest req, MethodArgumentNotValidException ex) {
         int status = 2;
-        String msg = CmmUtils.toString(ex.getBindingResult());
+        String msg = CmmUtils.toJsonString(ex.getBindingResult());
         logger.error("인자 유효성 오류({}): {}", status, msg, ex);
         return ErrorRS.of(status, req.getRequestURI(), msg);
     }

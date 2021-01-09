@@ -2,7 +2,7 @@ package com.tistory.ospace.simpleproject.repository.dto;
 
 import org.apache.ibatis.type.Alias;
 
-import com.tistory.ospace.core.data.BaseDto;
+import com.tistory.ospace.common.core.BaseDto;
 
 @Alias("Code")
 public class CodeDto extends BaseDto {

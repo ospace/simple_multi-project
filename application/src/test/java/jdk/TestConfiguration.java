@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.CmmUtils;
 
 public class TestConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(TestConfiguration.class);
@@ -38,7 +38,7 @@ public class TestConfiguration {
 		
 		logger.info("aa.like={}", like);
 		
-		logger.info("aa.like={}", CmmUtils.toString(like.split(",", -1)));
+		logger.info("aa.like={}", CmmUtils.toJsonString(like.split(",", -1)));
 		
 	}
 }

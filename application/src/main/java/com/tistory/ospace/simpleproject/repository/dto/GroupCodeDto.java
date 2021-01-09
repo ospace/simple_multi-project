@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 
 import org.apache.ibatis.type.Alias;
 
-import com.tistory.ospace.core.data.BaseDto;
+import com.tistory.ospace.common.core.BaseObject;
 
 @Alias("GroupCode")
-public class GroupCodeDto extends BaseDto {
+public class GroupCodeDto extends BaseObject {
 	private String        code;
 	private String        name;
 	private LocalDateTime createDate;

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.CmmUtils;
 
 
 @JsonIgnoreProperties({ "val"})
@@ -66,7 +66,7 @@ class Bar {
 	}*/
 	@Override
 	public String toString() {
-		return CmmUtils.toString(this);
+		return CmmUtils.toJsonString(this);
 	}
 }
 

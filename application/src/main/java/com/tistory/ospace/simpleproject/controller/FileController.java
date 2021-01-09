@@ -26,8 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tistory.ospace.base.data.SearchDto;
-import com.tistory.ospace.core.util.CmmUtils;
-import com.tistory.ospace.core.util.DataUtils;
+import com.tistory.ospace.common.util.CmmUtils;
+import com.tistory.ospace.common.util.DataUtils;
+import com.tistory.ospace.common.util.MathUtils;
 import com.tistory.ospace.simpleproject.model.FileInfo;
 import com.tistory.ospace.simpleproject.model.ListRS;
 import com.tistory.ospace.simpleproject.model.SearchKeyword;
@@ -78,7 +79,7 @@ public class FileController{
 	 */
 	@RequestMapping(value="/form")
 	public String form(@ModelAttribute("search") SearchKeyword search, Integer id, Model model) {
-		logger.info("form begin: search[{}] id[{}]", CmmUtils.toString(search), id);
+		logger.info("form begin: search[{}] id[{}]", CmmUtils.toJsonString(search), id);
 		
 		//model.addAttribute("roleList", codeService.searchRole());
 		
@@ -88,7 +89,7 @@ public class FileController{
 		}
 		model.addAttribute("file", file);
 		
-		logger.info("form end: file[{}]", CmmUtils.toString(file));
+		logger.info("form end: file[{}]", CmmUtils.toJsonString(file));
 		
 		return "normal:file/fileForm";
 	} 
@@ -131,7 +132,7 @@ public class FileController{
         logger.debug("select begin: id[{}]", id);
         long runtime = System.currentTimeMillis();
         
-        Integer numId = CmmUtils.parseInt(id);
+        Integer numId = MathUtils.parseInt(id);
         FileDto ret = null==numId ? fileService.readFile(id, res) : fileService.readFile(numId, res);
         
         logger.debug("select end: response[{}] runtime[{} msec]", ret, System.currentTimeMillis()-runtime);

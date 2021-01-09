@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.MathUtils;
 
 public class TestBigDecimal {
 	private static final Logger logger = LoggerFactory.getLogger(TestBigDecimal.class);
@@ -93,14 +93,14 @@ public class TestBigDecimal {
 		val = val.add(BigDecimal.valueOf(100000), MathContext.DECIMAL64);
 		val = val.multiply(BigDecimal.valueOf(30)).divide(HUNDRED);
 		BigDecimal val1 = BigDecimal.valueOf(val.setScale(-2, BigDecimal.ROUND_UP).longValue());
-		BigDecimal val2 = CmmUtils.ceilHundred(val);
-		logger.info("val[{}] val1[{}] val2[{}]", val, val1, val2);
+		//BigDecimal val2 = CmmUtils.ceilHundred(val);
+		logger.info("val[{}] val1[{}]", val, val1);
 	}
 	
 	@Test
 	public void testAddZero() {
 		BigDecimal zero = BigDecimal.ZERO;
 		BigDecimal val = BigDecimal.valueOf(7);
-		logger.info("added by {}, result {}", val, CmmUtils.add(zero, val));
+		logger.info("added by {}, result {}", val, MathUtils.add(zero, val));
 	}
 }

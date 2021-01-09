@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.stereotype.Component;
 
-import com.tistory.ospace.core.data.Pair;
+import com.tistory.ospace.common.core.Pair;
 
 @Component
 public class MonitoringService {

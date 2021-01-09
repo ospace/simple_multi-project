@@ -1,95 +1,13 @@
 (function umd(root, factory) {
   if ('function' === typeof define && define.amd) {
-    define(['jquery'], factory);
+    define([], factory);
   } else if ('object' === typeof module && module.exports) {
-    module.exports = factory(require('jquery'));
+    module.exports = factory();
   } else {
-    root.util = factory(root.jQuery);
+    root.util = factory();
   }
-}(this, function ($) {
+}(this, function () {
 
-/*
-if(undefined === $ || null === $) {
-	throw new Error('util을 사용하기 위해서는 반드시 사전에 jQeury을 포함해야 합니다.');
-}
-
-//--------------------------------------------------------------------  Jquery plugin
-$.fn.clickToggle = function(func1, func2) {
-	var funcs = [func1, func2];
-	this.data('toggleclicked', 0);
-	this.click(function() {
-		var data = $(this).data();
-		var tc = data.toggleclicked;
-		$.proxy(funcs[tc], this)();
-		data.toggleclicked = (tc + 1) % 2;
-	});
-	return this;
-};
-
-$.fn.serializeObject = function() {
-	var obj = null;
-	try {
-		if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
-			var arr = this.serializeArray();
-			if (arr) {
-				obj = {};
-				jQuery.each(arr, function() {
-					obj[this.name] = this.value;
-				});
-			}
-		}
-	} catch (e) {
-		alert(e.message);
-	}
-
-	return obj;
-};
-
-$.postJson = function(url, data, success, args) {
-	return $.ajax({
-		url: url,
-		type: 'POST',
-		data: JSON.stringify(data),
-		//dataType: 'json',
-		contentType: 'application/json; charset=utf-8',
-		success: success
-	}, args);
-};
-
-$.deleteJson = function(url, data, success, args) {
-	return $.ajax({
-		url: url,
-		type: 'DELETE',
-		data: JSON.stringify(data),
-		// dataType: 'json',
-		contentType: 'application/json; charset=utf-8',
-		success: success
-	}, args);
-};
-
-$.postMultipart = function(url, data, progress, args) {
-	let formData = new FormData();
-	for(let k in data) {
-		formData.append(k, data[k]);
-	}
-
-	return $.ajax({
-		url: url,
-		type: 'POST',
-		data: formData,
-		enctype: 'multipart/form-data',
-		// dataType: 'json',
-		processData: false,
-		contentType: false,
-		// success: success,
-		xhr: progress && function() {
-		    let xhr = $.ajaxSettings.xhr();
-            xhr.upload.onprogress = progress; //ev.total, evt.loaded
-            return xhr;
-		}
-	}, args);
-};
-*/
 return {
 	isUndef: function(obj) {
 		return undefined == obj || null == obj;
@@ -108,28 +26,6 @@ return {
 		var reg = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/ ;
 		return reg.test(str);
 	},
-	/**
-	 * 윈도우 팝업창
-	 */
-	wPopup : function(params){
-		
-		var options = {
-			title : "관리도구",
-			width : 600,
-			height : 400,
-			scrollbars : "no"
-		};
-		
-		$.extend( options, params );
-		
-		var left = (screen.width/2)-(options.width /2);
-		var top = (screen.height/2)-( options.height /2);
-		if( options.left != undefined ) left = left +  options.left;
-		if( options.top != undefined ) top = top +  options.top; 
-		
-		var winObj = window.open(options.url, options.title.replace(/ /g,'_'), 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=' + options.scroll + ', width='+options.width+', height='+options.height+', top='+top+', left='+left);
-		winObj.document.title = options.title
-	},
 	formatBytes : function(a,b){
 		if(0==a)return"0 Bytes";
 		var c=1024,
@@ -140,45 +36,10 @@ return {
 	formatNumber : function(p){
 		return p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	},
-	setFormatNumber : function(obj){
-		$(obj).val( $(obj).val().replace(/,/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ",") );
-	},
-	/**
-	 *  리스트 데이터 Object  MVC 에서 받을 수 있는 Object  로 변환
-	 *  dataList[0].dataTitle : 'abcd'
-	 *  dataList[1].dataTitle : 'efgh'
-	 *  ...
-	 */
-	converListToObject : function(name, objList){
-		
-		var obj = {};
-		$(objList).each(function(i,val){
-			$.each(val,function(k,v){
-				obj[name + "[" + i + "]." + k] = v;
-			});
-			
-		});
-		//console.log( obj )
-		return obj
-		
-	},
-	/**
-	 * textarea 높이 내용에 맞게 조정
-	 */
-	autoHeight : function(obj){
-		$(obj).height( $(obj).prop("scrollHeight") + 16)
-	},
 	/**
 	 * 페이지 이동
 	 */
 	movePage: function (url, data) {
-	    /*
-		let form = $('<form/>', {method:'post', action:url});
-		for(let k in data) {
-			form.append($('<input/>', {type:'hidden', name:k, value:data[k]}));
-		}
-		form.appendTo(document.body);
-		*/
 		let form = this.createElement('form', {method:'post', action:url});
 		for(let k in data) {
 		    let child = this.createElement('input', {type:'hidden', name:k, value:data[k]});

@@ -22,9 +22,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.tistory.ospace.core.data.Tuple;
-import com.tistory.ospace.core.util.CmmUtils;
-import com.tistory.ospace.core.util.DateUtils;
+import com.tistory.ospace.common.core.Tuple;
+import com.tistory.ospace.common.util.CmmUtils;
+import com.tistory.ospace.common.util.DateUtils;
 
 
 public class TestZonedDateTime {
@@ -277,7 +277,7 @@ public class TestZonedDateTime {
 	@Test
 	public void testToString() {
 		Tuple<String, ZonedDateTime> now = Tuple.of("NOW", ZonedDateTime.now());
-		logger.info(">>> now : {}", CmmUtils.toString(now));
+		logger.info(">>> now : {}", CmmUtils.toJsonString(now));
 	}
 	
 	public static ZonedDateTime getToday() {

@@ -6,7 +6,7 @@ import org.apache.ibatis.type.Alias;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.tistory.ospace.core.data.BaseDto;
+import com.tistory.ospace.common.core.BaseDto;
 import com.tistory.ospace.simpleproject.util.YN;
 
 @Alias("User")

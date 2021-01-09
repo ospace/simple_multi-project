@@ -5,7 +5,6 @@ import java.lang.management.MemoryMXBean;
 import java.lang.management.MemoryUsage;
 import java.lang.management.OperatingSystemMXBean;
 import java.lang.management.RuntimeMXBean;
-import java.lang.management.ThreadMXBean;
 import java.util.List;
 
 import org.junit.Test;
@@ -82,7 +81,7 @@ public class TestMonitoring {
 	
 	@Test
 	public void testThreadCpu() {
-		ThreadMXBean thdBean = ManagementFactory.getThreadMXBean();
+		//ThreadMXBean thdBean = ManagementFactory.getThreadMXBean();
 		//thdBean.
 	}
 	

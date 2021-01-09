@@ -2,7 +2,7 @@ package com.tistory.ospace.simpleproject.util;
 
 import java.util.Map;
 
-import com.tistory.ospace.core.util.DataUtils;
+import com.tistory.ospace.common.util.DataUtils;
 
 public enum Gender {
 	M("Man", "남성"), W("Woman", "여성");

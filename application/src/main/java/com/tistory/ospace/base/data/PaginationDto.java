@@ -2,10 +2,10 @@ package com.tistory.ospace.base.data;
 
 import org.apache.ibatis.type.Alias;
 
-import com.tistory.ospace.core.data.BaseDto;
+import com.tistory.ospace.common.core.BaseObject;
 
 @Alias("Pagination")
-public class PaginationDto extends BaseDto {
+public class PaginationDto extends BaseObject {
     
 	private int     pageNo = 1;	//현재 페이지
 	private int     size = 10;	//한번에 표시되는 페이지 크기

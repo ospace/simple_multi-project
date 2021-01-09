@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.CmmUtils;
 import com.tistory.ospace.simpleproject.util.SessionUtils;
 
 @Controller
@@ -46,7 +46,7 @@ public class MainController {
 		 logger.info("main begin");
 		 long runtime = System.currentTimeMillis();
 		 
-		 logger.debug("principal[{}]", CmmUtils.toString(SessionUtils.getSecurityPrincipal()));
+		 logger.debug("principal[{}]", CmmUtils.toJsonString(SessionUtils.getSecurityPrincipal()));
 		 
 		 logger.info("main end: runtime[{} msec]", System.currentTimeMillis()-runtime);
 		 return "normal:main";

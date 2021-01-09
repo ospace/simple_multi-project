@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.Set;
 
 import com.tistory.ospace.base.data.SearchDto;
-import com.tistory.ospace.core.data.BaseDto;
-import com.tistory.ospace.core.util.CmmUtils;
-import com.tistory.ospace.core.util.DataUtils;
-import com.tistory.ospace.core.util.StringUtils;
+import com.tistory.ospace.common.core.BaseDto;
+import com.tistory.ospace.common.util.CmmUtils;
+import com.tistory.ospace.common.util.DataUtils;
+import com.tistory.ospace.common.util.StringUtils;
 import com.tistory.ospace.simpleproject.model.FileInfo;
 import com.tistory.ospace.simpleproject.model.SearchKeyword;
 import com.tistory.ospace.simpleproject.model.User;
@@ -68,7 +68,7 @@ public class ModelUtils {
 	public static CodeDto convert(Category from, CodeDto to) {
 		if(null == from) return to;
 		
-		CmmUtils.convert(from, to, "createDate");
+		CmmUtils.copy(from, to, "createDate");
 		
 		return to;
 	}
@@ -76,7 +76,7 @@ public class ModelUtils {
 	public static SearchDto convert(SearchKeyword from, SearchDto to) {
 		if(null == from) return to;
 		
-		CmmUtils.convert(from, to);
+		CmmUtils.copy(from, to);
 		to.setType(from.getSearchType());
 		to.setKeyword(from.getSearchKeyword());
 		
@@ -86,7 +86,7 @@ public class ModelUtils {
 	public static FileInfo convert(FileDto from, FileInfo to) {
 		if(null == from) return to;
 		
-		CmmUtils.convert(from, to, "filename");
+		CmmUtils.copy(from, to, "filename");
 		to.setUrl(createFileUrl(from.getFilename()));
 		
 		return to;
@@ -109,7 +109,7 @@ public class ModelUtils {
 	public static User convert(UserDto from, User to) {
 		if(null == from) return to;
 		
-		CmmUtils.convert(from, to, "useYn", "modifyDate", "password");
+		CmmUtils.copy(from, to, "useYn", "modifyDate", "password");
 		to.setModifyDate(DateHelper.toStringDate(from.getModifyDate()));
 		to.setEnable(YN.toBoolean(from.getUseYn()));
 		
@@ -119,7 +119,7 @@ public class ModelUtils {
 	public static UserDto convert(User from, UserDto to) {
 		if(null == from) return to;
 		
-		CmmUtils.convert(from, to, "enable", "modifierName", "modifyDate");
+		CmmUtils.copy(from, to, "enable", "modifierName", "modifyDate");
 		to.setUseYn(YN.toYn(from.getEnable()));
 		
 		return to;
@@ -128,7 +128,7 @@ public class ModelUtils {
 	public static User convert(UserPropDto from, User to) {
 		if(null == from) return to;
 		
-		CmmUtils.convert(from, to, "password");
+		CmmUtils.copy(from, to, "password");
 		to.setEnable(YN.toBoolean(from.getUseYn()));
 		
 		return to;
@@ -137,7 +137,7 @@ public class ModelUtils {
 	public static UserPropDto convert(User from, UserPropDto to) {
 		if(null == from) return to;
 		
-		CmmUtils.convert(from, to);
+		CmmUtils.copy(from, to);
 		to.setUseYn(YN.toYn(from.getEnable()));
 		
 		return to;

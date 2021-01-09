@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import com.tistory.ospace.core.util.CmmUtils;
+import com.tistory.ospace.common.util.CmmUtils;
 
 
 public class TestContainer {
@@ -70,7 +70,7 @@ public class TestContainer {
 		public Foo (int id, String name, List<Integer> count) {
 			this.id = id; this.name = name; this.count = count;
 		}
-		public String toString() { return CmmUtils.toString(this); }
+		public String toString() { return CmmUtils.toJsonString(this); }
 	}
 	
 	static List<Integer> generateInt(int size) {
@@ -153,9 +153,9 @@ public class TestContainer {
 		logger.info("HashSet : {}", res);
 		
 		
-		String[] strs2 = null;
-		List<String> strs3 = Arrays.asList(strs2); 
-		logger.info("null array : {}", String.join(",", strs2));
+		//String[] strs2 = null;
+		//List<String> strs3 = Arrays.asList(strs2); 
+		//logger.info("null array : {}", String.join(",", strs2));
 		
 	}
 	

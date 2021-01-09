@@ -3,10 +3,10 @@ package com.tistory.ospace.simpleproject.repository.dto;
 import org.apache.ibatis.type.Alias;
 import org.springframework.security.core.GrantedAuthority;
 
-import com.tistory.ospace.core.data.BaseData;
+import com.tistory.ospace.common.core.BaseObject;
 
 @Alias("Authority")
-public class AuthorityDto extends BaseData implements GrantedAuthority {
+public class AuthorityDto extends BaseObject implements GrantedAuthority {
     private static final long serialVersionUID = 2970833796443419422L;
     
     private Integer userId;
