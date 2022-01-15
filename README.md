@@ -1,2 +1,2 @@
 # simple_project
-Simple Project Template
+Simple Multi Project Template
