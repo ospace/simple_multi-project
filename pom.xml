@@ -1,71 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.tistory.ospace</groupId>
-	<artifactId>simple-project</artifactId>
-	<version>${revision}</version>
-	<packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.tistory.ospace</groupId>
+    <artifactId>simple-project</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
 
-	<name>simple-project</name>
-	<description>Template for Simple Project</description>
+    <name>simple-project</name>
+    <description>Template for Simple Project</description>
 
     <!-- https://mvnrepository.com/artifact/org.springframework.boot -->
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.8.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.8.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
-	<properties>
+    <properties>
         <revision>0.3.0-SNAPSHOT</revision>
-    
-    	<!-- <start-class>com.tistory.ospace.simpleproject.application.SimpleApplication</start-class> -->
-	    <!-- <revision>0.1.0-SNAPSHOT</revision> -->
-	    
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<maven.test.skip>true</maven.test.skip>
+        <!-- <start-class>com.tistory.ospace.simpleproject.application.SimpleApplication</start-class> -->
+        <!-- <revision>0.1.0-SNAPSHOT</revision> -->
 
-		<!-- <main.basedir>${basedir}/../..</main.basedir> -->
-		<!-- <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot> -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.test.skip>true</maven.test.skip>
+
+        <!-- <main.basedir>${basedir}/../..</main.basedir> -->
+        <!-- <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot> -->
 
         <!-- Nexus -->
-        <!-- 
-        <deploy.nexus.uri>http://foo.org</deploy.nexus.uri>
-        -->
+        <!-- <deploy.nexus.uri>http://foo.org</deploy.nexus.uri> -->
         <version.model>1.0.0</version.model>
         <version.java>1.8</version.java>
-		<version.junit>4.12</version.junit>
-		<version.slf4j>1.7.5</version.slf4j>
-		<version.logback>1.1.7</version.logback>
-		<version.json-lib>2.4</version.json-lib>
-		<version.swagger2>2.8.0</version.swagger2>
-		<version.findbugs>3.0.2</version.findbugs>
-	</properties>
-    
+        <version.junit>4.12</version.junit>
+        <version.slf4j>1.7.5</version.slf4j>
+        <version.logback>1.1.7</version.logback>
+        <version.json-lib>2.4</version.json-lib>
+        <version.swagger2>2.8.0</version.swagger2>
+        <version.findbugs>3.0.2</version.findbugs>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
-          <dependency>
-            <groupId>com.tistory.ospace</groupId>
-            <artifactId>simple-project-model</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>com.tistory.ospace</groupId>
-            <artifactId>simple-project-core</artifactId>
-            <version>${project.version}</version>
-          </dependency>
+            <dependency>
+                <groupId>com.tistory.ospace</groupId>
+                <artifactId>simple-project-model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.tistory.ospace</groupId>
+                <artifactId>simple-project-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
-	<modules>
-		<module>application</module>
-        <module>core</module>
-		<module>model</module>
-	</modules>
+    <modules>
+        <module>application</module>
+        <!-- <module>core</module> -->
+        <module>model</module>
+    </modules>
 </project>
