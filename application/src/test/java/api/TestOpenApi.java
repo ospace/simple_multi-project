@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,17 +23,17 @@ import util.ApiMockRes;
 @AutoConfigureMockMvc
 @Import({ApiMockMvc.class})
 public class TestOpenApi {
-	private static final Logger logger = LoggerFactory.getLogger(TestOpenApi.class);
-	
-	@Test
-	public void test1() {
-		ApiMockMvc mvc = ApiMockMvc.create();
-		
-		String foo = "foo";
-		ApiMockRes result = mvc.performSafe("/api/foo", foo);
-		
-		Integer status = result.getInteger("status");
-		
-		assertThat(status, is(equalTo(0)));
-	}
+    private static final Logger logger = LoggerFactory.getLogger(TestOpenApi.class);
+
+    @Test
+    public void test1() {
+        ApiMockMvc mvc = ApiMockMvc.create();
+
+        String foo = "foo";
+        ApiMockRes result = mvc.performSafe("/api/foo", foo);
+
+        Integer status = result.getInteger("status");
+
+        assertThat(status, is(equalTo(0)));
+    }
 }
